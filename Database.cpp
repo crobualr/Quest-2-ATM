@@ -1,9 +1,10 @@
-#include <vector>
 #include "Account.h"
-using namespace std;
-#include <algorithm>
-#include <iostream>
 #include "Database.h"
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 class Database{
 public:
@@ -13,18 +14,23 @@ public:
 		Database::accounts.push_back(a); 
 	}
 
-	bool Database::find(Account account)
-	{
+	bool find(Account const & a) {
+		for (vector<Account>::iterator it = accounts.begin(); it != accounts.end(); it++) {
+			if (it != accounts.end()) {
+				cout << "Account number found" << endl;
+				return true;
+			}
+			else {
+				cout << "Account number not found" << endl;
+			}
+		}
 		return false;
 	}
 
 	vector<Account> getAccounts() const {
-		return vector<Account>();
+		return accounts;
 	}
-	bool find(Account const & a){
-		if (std::find(accounts.begin(), accounts.end(), a) != accounts.end()) {
-		return false;
-	}
+	
 private:
 	vector<Account>accounts; 
 };
